@@ -1,0 +1,58 @@
+<app-x-note-tab active="SHARED-WITH-ME"></app-x-note-tab>
+<app-x-page-title title="Shared with Me" [loading]="loading"></app-x-page-title>
+
+<p-table
+    #dt
+    responsiveLayout="stack" [breakpoint]="'760px'"
+    [value]="shares"
+    dataKey="id"
+    [totalRecords]="totalRecords"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    [paginator]="true"
+    [lazy]="true"
+    [rows]="pageSize"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+    [first]="pageFirst"
+    (onLazyLoad)="onLazyLoad($event)"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['id', 'caption', 'state', 'category']"
+    styleClass="p-datatable-striped"
+    >
+    <ng-template pTemplate="caption">
+        <app-x-table-header (input)="dt.filterGlobal($any($event.target).value, 'contains')"></app-x-table-header>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th [pSortableColumn]="'note.id'">ID <p-sortIcon [field]="'note.id'"></p-sortIcon></th>
+            <th [pSortableColumn]="'note.caption'">Caption <p-sortIcon [field]="'note.caption'"></p-sortIcon></th>
+            <th [pSortableColumn]="'note.state'">State <p-sortIcon [field]="'note.state'"></p-sortIcon></th>
+            <th [pSortableColumn]="'note.category'">Category <p-sortIcon [field]="'note.category'"></p-sortIcon></th>
+            <th [pSortableColumn]="'note.owner'">Owner <p-sortIcon [field]="'note.owner'"></p-sortIcon></th>
+            <th [pSortableColumn]="'access'">Access <p-sortIcon [field]="'access'"></p-sortIcon></th>
+            <th>Action</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-share>
+        <tr>
+            <td><span class="p-column-title">ID</span>{{ share.note.id }}</td>
+            <td><span class="p-column-title">Caption</span>{{ share.note.caption }}</td>
+            <td>
+                <span class="p-column-title">State</span>
+                <app-x-state [state]="share.note.state"></app-x-state>
+            </td>
+            <td><span class="p-column-title">Category</span>{{ share.note.category }}</td>
+            <td><span class="p-column-title">Owner</span>{{ share.note.owner }}</td>
+            <td>
+                <span class="p-column-title">Access</span>
+                <app-x-access [access]="share.access"></app-x-access>
+            </td>
+            <td>
+                <p-menu #menu [model]="menuItems(share)" [popup]="true" appendTo="body"></p-menu>
+                <button pButton type="button" class="p-button-outlined p-button-secondary p-button-sm"
+                    (click)="menu.toggle($event)" icon="pi pi-bars"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

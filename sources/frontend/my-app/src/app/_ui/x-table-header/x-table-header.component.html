@@ -1,0 +1,19 @@
+<ng-template [ngIf]="hasNewLink">
+    <div class="d-flex justify-content-between">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            [routerLink]="newLink"></button>
+        <span class="p-input-icon-left float-end">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="input" placeholder="Global Search" />
+        </span>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="!hasNewLink">
+    <div class="d-flex justify-content-end">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" placeholder="Global Search" />
+        </span>
+    </div>
+</ng-template>

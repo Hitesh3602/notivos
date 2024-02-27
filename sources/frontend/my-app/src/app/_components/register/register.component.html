@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <app-x-page-title title="Create an account"></app-x-page-title>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3 required">
+                <!-- Full name -->
+                <label for="fullName" class="control-label">
+                    Full Name
+                </label>
+                <input pInputText formControlName="fullName" type="text" class="form-control" id="fullName" placeholder="Full name"
+                    required>
+            </div>
+
+            <div class="form-group mb-3 required">
+                <!-- E-mail -->
+                <label for="email" class="control-label">
+                    Email
+                </label>
+                <input pInputText formControlName="email" type="email" class="form-control" id="email" placeholder="Email"
+                    required>
+            </div>
+
+            <div class="form-group mb-3 required">
+                <!-- Password-->
+                <label for="password" class="control-label">
+                    Password
+                </label>
+                <app-x-password formControlName="password" id="password" placeholder="Enter password"></app-x-password>
+            </div>
+
+            <div class="form-group mb-3 required">
+                <!-- Password (confirm) -->
+                <label for="password_confirm" class="control-label">
+                    Password (Confirm)
+                </label>
+                <app-x-password formControlName="password_confirm" id="password_confirm"
+                    placeholder="Enter password again"></app-x-password>
+                <div *ngIf="passwordMatchError">
+                    <div class="text-danger">Passwords does not match</div>
+                </div>
+            </div>
+
+            <!-- Button -->
+
+            <div class="d-flex flex-row">
+                <button pButton class="p-button p-button-raised me-4 p-button-success" [disabled]="!registerForm.valid">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register</button>
+                <a class="mt-auto mb-auto" [routerLink]="['/login']">Back to Login</a>
+            </div>
+        </form>
+    </div>
+</div>

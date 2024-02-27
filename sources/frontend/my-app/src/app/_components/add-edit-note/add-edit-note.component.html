@@ -1,0 +1,64 @@
+<app-x-page-title title="Create Note" *ngIf="isAddMode"></app-x-page-title>
+<app-x-page-title title="Edit Note" *ngIf="!isAddMode"></app-x-page-title>
+
+<form id="profileForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mb-3 required">
+        <!-- Name -->
+        <label for="caption" class="control-label">
+            Caption
+        </label>
+        <input pInputText formControlName="caption" type="text" class="form-control" id="caption"
+            placeholder="Enter caption" required>
+    </div>
+
+    <div class="form-group mb-3 required">
+        <!-- Body -->
+        <label for="body" class="control-label">
+            Note body
+        </label>
+        <p-editor id="body" formControlName="body" [style]="{ height: '320px' }">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+                <span class="ql-formats"> 
+                    <select class="ql-color"></select>
+                    <select class="ql-background"></select>
+                </span>
+                <span class="ql-formats"> 
+                    <button class="ql-clean"></button>
+                </span>
+            </ng-template>        
+        </p-editor>
+    </div>
+
+    <div class="form-group row mb-3 required">
+        <!-- Category -->
+        <label for="category" class="col-sm-2 col-form-label control-label">
+            Category
+        </label>
+        <div class="col-sm-9">
+            <p-dropdown id="category" [options]="categories" formControlName="category" optionLabel="name" optionValue="name"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3 required">
+        <!-- State -->
+        <label for="state" class="col-sm-2 col-form-label control-label">
+            State
+        </label>
+        <div class="col-sm-9">
+            <p-dropdown id="state" [options]="states" formControlName="state" optionLabel="name" optionValue="name"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row">
+        <button pButton class="p-button-success me-4 p-button-raised" type="submit" [disabled]="!editForm.valid">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+            Save Changes</button>
+        <a class="mt-auto mb-auto" [routerLink]="['/manage-notes']">Back to list</a>
+    </div>
+</form>

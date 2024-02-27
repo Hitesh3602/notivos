@@ -1,0 +1,73 @@
+<app-x-page-title title="Manage users" [loading]="loading"></app-x-page-title>
+
+<p-table 
+  #dt 
+  responsiveLayout="stack" [breakpoint]="'760px'"
+  [value]="users" 
+  dataKey="id" 
+  [totalRecords]="totalRecords" 
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 20, 50]" 
+  [paginator]="true" 
+  [lazy]="true"
+  [rows]="pageSize"
+  [sortField]="sortField"
+  [sortOrder]="sortOrder"
+  [first]="pageFirst"
+  (onLazyLoad)="onLazyLoad($event)"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="['id', 'locked', 'fullName', 'email']"
+  styleClass="p-datatable-striped"
+  >
+  <ng-template pTemplate="caption">
+    <app-x-table-header (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+        [newLink]="['/add-user']"></app-x-table-header>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 8%" [pSortableColumn]="'id'">ID <p-sortIcon field="id"></p-sortIcon></th>
+      <th style="width: 16%" [pSortableColumn]="'locked'">Locked? <p-sortIcon [field]="'locked'"></p-sortIcon></th>
+      <th style="width: 30%" [pSortableColumn]="'fullName'">Full name <p-sortIcon [field]="'fullName'"></p-sortIcon></th>
+      <th style="width: 21%" [pSortableColumn]="'email'">Email <p-sortIcon [field]="'email'"></p-sortIcon></th>
+      <th style="width: 10%" [pSortableColumn]="'numberOfNotes'"># Notes<p-sortIcon [field]="'numberOfNotes'"></p-sortIcon></th>
+      <th style="width: 10%" [pSortableColumn]="'numberOfShared'"># Shared<p-sortIcon [field]="'numberOfShared'"></p-sortIcon></th>
+      <th style="width: 16%">Roles</th>
+      <th style="width: 5%">Action</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td><span class="p-column-title">ID</span>{{ user.id }}</td>
+      <td>
+        <span class="p-column-title">Locked?</span>
+        <ng-template [ngIf]="user.locked!" [ngIfElse]="nolock">
+          <i class="fa fa-regular fa-lock" style="font-size: calc(100% + 0.25vw + 0.25vh)"></i>
+        </ng-template>
+        <ng-template #nolock>
+        </ng-template>
+      </td>
+      <td><span class="p-column-title">Full name</span>{{ user.fullName }}</td>
+      <td><span class="p-column-title">Email</span>{{ user.email }}</td>
+      <td><span class="p-column-title"># Notes</span>{{ user.numberOfNotes }}</td>
+      <td><span class="p-column-title"># Shared</span>{{ user.numberOfShared }}</td>
+      <td>
+        <span class="p-column-title">Roles</span>
+        <div class="d-flex flex-row justify-content-start">
+        <div class="ms-s d-inline" *ngFor="let role of user.roles">
+          <ng-template [ngIf]="role == 'ADMIN'" [ngIfElse]="user">
+            <span class="badge bg-danger ms-1">{{ role }}</span>
+          </ng-template>
+          <ng-template #user>
+            <span class="badge bg-primary ms-1">{{ role }}</span>
+          </ng-template>
+        </div>
+      </div>
+      </td>
+      <td>
+        <p-menu #menu [model]="menuItems(user)" [popup]="true" appendTo="body"></p-menu>
+        <button pButton type="button" class="p-button-outlined p-button-secondary p-button-sm" (click)="menu.toggle($event)"
+          icon="pi pi-bars"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

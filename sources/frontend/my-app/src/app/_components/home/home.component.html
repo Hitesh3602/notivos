@@ -1,0 +1,19 @@
+<div class="row">
+    <ng-container *ngFor="let note of notes">
+        <div class="col-md-4">
+            <div class="card note-card mb-4 box-shadow">
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.caption! }}</h5>
+                    <p class="card-text fade-out" [innerHtml]="note.body! | safeHtml"></p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <a [routerLink]="['/view-note/'+ note.id]" class="card-view-link">View</a>
+                    <small class="text-muted">{{ note.modifiedAt! | dateFromNow }}</small>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+<p-paginator (onPageChange)="onPageChange($event)" [alwaysShow]="true" [first]="pageFirst" [showPageLinks]="false"
+    [totalRecords]="totalRecords" [rows]="pageSize"></p-paginator>

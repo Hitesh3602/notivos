@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  notes-server:
+    build:
+      context: ./notes-server
+    environment:
+      - POSTGRES_URI=${POSTGRES_URI:-jdbc:postgresql://playbox:5432/notes}
+    volumes:
+      - ./config/note-server/application.properties:/app/application.properties:r
+    expose:
+      - "8080:8080"
+
+  notes-angular:
+    build:
+      context: ./notes-angular
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf:r
+    ports:
+      - "50080:80"
+

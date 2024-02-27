@@ -1,0 +1,84 @@
+<app-x-page-title title="Create User" *ngIf="isAddMode"></app-x-page-title>
+<app-x-page-title title="Edit User" *ngIf="!isAddMode"></app-x-page-title>
+
+<form id="profileForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mb-3 required">
+        <!-- Full name -->
+        <label for="fullName" class="control-label">
+            Full Name
+        </label>
+        <input pInputText formControlName="fullName" type="text" class="form-control" id="fullName"
+            placeholder="Full name" required>
+    </div>
+
+    <div class="form-group mb-3 required">
+        <!-- E-mail -->
+        <label for="email" class="control-label">
+            Email
+        </label>
+        <input pInputText formControlName="email" type="email" class="form-control" id="email" placeholder="Email"
+            required>
+    </div>
+
+    <div class="form-group mb-3">
+        <!-- Locked -->
+        <div class="form-check">
+            <input [checked]="editForm.controls.locked" formControlName="locked" class="form-check-input"
+                type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Locked?
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group mb-3 required" *ngIf="isAddMode">
+        <!-- Password-->
+        <label for="password" class="control-label">
+            Password
+        </label>
+        <app-x-password formControlName="password" placeholder="Enter password"></app-x-password>
+    </div>
+
+    <div class="form-group mb-3 required" *ngIf="isAddMode">
+        <!-- Password (confirm) -->
+        <label for="password_confirm" class="control-label">
+            Password (Confirm)
+        </label>
+        <app-x-password formControlName="password_confirm" placeholder="Enter password again"></app-x-password>
+        <div *ngIf="passwordMatchError">
+            <div class="text-danger">Passwords does not match</div>
+        </div>
+    </div>
+
+
+    <div class="form-group mb-3">
+        <!-- Roles -->
+        <label class="control-label">
+            Roles
+        </label>
+        <div class="control-group p-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck1" [checked]="editForm.controls.role_0"
+                    formControlName="role_0">
+                <label class="form-check-label" for="gridCheck1">
+                    ADMIN
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck2" [checked]="editForm.controls.role_1"
+                    formControlName="role_1">
+                <label class="form-check-label" for="gridCheck2">
+                    USER
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row">
+        <button pButton class="p-button-success me-4" type="submit" [disabled]="!editForm.valid">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+            Save Changes</button>
+        <a class="mt-auto mb-auto" [routerLink]="['/manage-users']">Back to list</a>
+    </div>
+</form>

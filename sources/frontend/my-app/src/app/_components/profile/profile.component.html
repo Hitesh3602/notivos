@@ -1,0 +1,43 @@
+<app-x-page-title title="My Profile"></app-x-page-title>
+
+<form id="profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mb-3 required">
+        <!-- Full name -->
+        <label for="fullName" class="control-label">
+            Full Name
+        </label>
+        <input pInputText formControlName="fullName" type="text" class="form-control" id="fullName"
+            placeholder="Full name" required>
+    </div>
+
+    <div class="form-group mb-3 required">
+        <!-- E-mail -->
+        <label for="email" class="control-label">
+            Email
+        </label>
+        <input pInputText formControlName="email" type="email" class="form-control" id="email" placeholder="Email"
+            required>
+    </div>
+
+    <div class="form-group mb-3">
+        <!-- Roles -->
+        <label for="roles" class="control-label">
+            Roles
+        </label>
+        <span class="ms-2">
+            <div class="ms-1 d-inline" *ngFor="let role of roles">
+                <ng-template [ngIf]="role == 'ADMIN'" [ngIfElse]="user">
+                    <span class="badge bg-danger ms-1">{{ role }}</span>
+                </ng-template>
+                <ng-template #user>
+                    <span class="badge bg-primary ms-1">{{ role }}</span>
+                </ng-template>
+            </div>
+        </span>
+    </div>
+
+    <button pButton class="p-button-success p-button-raised" [disabled]="!profileForm.valid" type="submit">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Save Changes</button>
+</form>

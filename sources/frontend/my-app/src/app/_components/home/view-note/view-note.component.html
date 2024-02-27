@@ -1,0 +1,44 @@
+<div class="d-flex note-view-card">
+    <div class="flex-column w-75 me-3">
+        <div class="card">
+            <div class="card-header">
+                <small class="text-muted">{{ note?.modifiedAt! | dateFromNow }}</small>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mb-4">{{ note?.caption }}</h5>
+                <p class="card-text" [innerHtml]="note?.body! | safeHtml"></p>
+            </div>
+            <div class="card-footer text-muted">
+                <a class="mt-auto mb-auto" [routerLink]="['/']" class="card-view-link">Back to list</a>
+            </div>
+        </div>
+    </div>
+    <div class="flex-column w-25">
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item theme-description__list__item">
+                        <span class="theme-description__item__title">Category</span>
+                        <span class="float-end fw-bold">{{ note?.category  }}</span>
+                    </li>
+                    <li class="list-group-item theme-description__list__item">
+                        <span class="theme-description__item__title">State</span>
+                        <span class="float-end fw-bold">{{ note?.state  }}</span>
+                    </li>
+                    <li class="list-group-item theme-description__list__item">
+                        <span class="theme-description__item__title float-start">Owner</span>
+                        <span class="float-end">{{ note?.owner }}</span>
+                    </li>
+                    <li class="list-group-item theme-description__list__item">
+                        <span class="theme-description__item__title">Created at</span>
+                        <span class="float-end">{{ note?.createdAt | date:'medium' }}</span>
+                    </li>
+                    <li class="list-group-item theme-description__list__item">
+                        <span class="theme-description__item__title">Modified at</span>
+                        <span class="float-end">{{ note?.modifiedAt | date:'medium' }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+**/nohup.out
+/sources/frontend/my-app/nbproject/private/
+/sources/backend/t/nbproject/private/
+/sources/backend/t/node_modules/
+/docker/note-angular/*.tgz
+/docker/note-server/*.jar

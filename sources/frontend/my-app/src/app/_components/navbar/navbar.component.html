@@ -1,0 +1,45 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']"><span class="pi pi-home me-1"></span>Snappy Board</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <ng-template [ngIf]="isNotAuthenticated()" [ngIfElse]="authenticated">
+              <a class="nav-link" [routerLink]="['/login']">Login</a>
+            </ng-template>
+            <ng-template #authenticated>
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ user.fullName }}<p-avatar icon="pi pi-user" styleClass="ms-2" shape="circle"></p-avatar>
+                      <!-- <i class="ms-4 fa fa-1x fa-solid fa-user"></i> -->
+                    </a>
+                    <ul class="dropdown-menu">
+                      <a class="dropdown-item" [routerLink]="['/profile']">Profile</a>
+                      <a class="dropdown-item" [routerLink]="['/change-password']">Change Password</a>
+                      <div class="dropdown-divider"></div>
+                      <ng-template [ngIf]="user.roles?.includes('USER')">
+                        <a class="dropdown-item" [routerLink]="['/manage-notes']">Manage Notes</a>
+                        <div class="dropdown-divider"></div>
+                      </ng-template>
+                      <ng-template [ngIf]="user.roles?.includes('ADMIN')">
+                        <a class="dropdown-item" [routerLink]="['/manage-categories']">Manage Categories</a>
+                        <a class="dropdown-item" [routerLink]="['/manage-users']">Manage Users</a>
+                        <div class="dropdown-divider"></div>
+                      </ng-template>
+                      <a class="dropdown-item btn" (click)="logout()">Log Out</a>
+                    </ul>
+                  </li>
+                </ul>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
