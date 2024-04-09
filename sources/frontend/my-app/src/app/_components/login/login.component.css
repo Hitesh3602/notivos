@@ -1,0 +1,27 @@
+body {
+    background-color: #E5E5E5;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.col-md-6 {
+    padding: 0;
+    border: none;
+}
+
+.no-box {
+    padding: 0;
+    border: none;
+}
+
+.custom-text-color {
+    color: #000000;
+}
+
+.custom-button-color {
+    background-color: #14213D !important;
+    border-color: #14213D !important;
+    color: #FCA311 !important; /* Text color */
+}

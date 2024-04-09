@@ -1,7 +1,7 @@
 <header>
-  <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm fixed-top">
+  <nav class="navbar navbar-expand-sm navbar-light bg-dark border-bottom shadow-sm fixed-top custom-bg-brown">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']"><span class="pi pi-home me-1"></span>Snappy Board</a>
+      <a class="navbar-brand custom-text-color" [routerLink]="['/']"><span class="pi pi-home me-1"></span>Notivos</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
         aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,13 +10,13 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <ng-template [ngIf]="isNotAuthenticated()" [ngIfElse]="authenticated">
-              <a class="nav-link" [routerLink]="['/login']">Login</a>
+              <a class="nav-link custom-text-color" [routerLink]="['/login']">Login</a>
             </ng-template>
             <ng-template #authenticated>
                 <ul class="navbar-nav">
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ user.fullName }}<p-avatar icon="pi pi-user" styleClass="ms-2" shape="circle"></p-avatar>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #FCA311;">
+                      {{ user.fullName }}<p-avatar icon="pi pi-user" styleClass="ms-2" shape="circle" ></p-avatar>
                       <!-- <i class="ms-4 fa fa-1x fa-solid fa-user"></i> -->
                     </a>
                     <ul class="dropdown-menu">

@@ -1,34 +1,36 @@
-<div class="row justify-content-center">
-    <div class="col-md-6">
+<body class="custom-text-color p-3">
+    <div class="row justify-content-center no-margin">
+        <div class="col-md-6 no-box custom-text-color">
 
-        <div class="mb-4">
-            <h5>Sign in To Snappy Board</h5>
-            <span class="text text-secondary">Welcome, please use the form to sign-in</span>
+            <div class="mb-4 custom-text-color">
+                <h5 class="custom-text-color">Sign in To Snappy Board</h5>
+                <span class="text text-secondary custom-text-color">Welcome, please use the form to sign-in</span>
+            </div>
+
+            <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group mb-3">
+                    <label for="email" class="custom-text-color">
+                        Enter e-mail address
+                    </label>
+                    <input pInputText formControlName="email" type="email" class="form-control custom-text-color" id="email"
+                        placeholder="" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password" class="custom-text-color">
+                        Enter password
+                    </label>
+                    <input pInputText formControlName="password" type="password" class="form-control custom-text-color" id="password"
+                        placeholder="" required>
+                </div>
+                <a class="float-end mt-2 custom-text-color" [routerLink]="['/lost-password']">Lost Password?</a>
+                <button pButton class="p-button-success p-button-raised custom-text-color custom-button-color">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1 custom-text-color"></span>
+                    Login
+                </button>
+            </form>
+            <p class="mt-3 custom-text-color">Not registered?
+                <a [routerLink]="['/register']" class="custom-text-color">Create an account</a>
+            </p>
         </div>
-
-        <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group mb-3">
-                <label for="email">
-                    Enter e-mail address
-                </label>
-                <input pInputText formControlName="email" type="email" class="form-control" id="email"
-                    placeholder="" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="password">
-                    Enter password
-                </label>
-                <input pInputText formControlName="password" type="password" class="form-control" id="password"
-                    placeholder="" required>
-            </div>
-            <a class="float-end mt-2" [routerLink]="['/lost-password']">Lost Password?</a>
-            <button pButton class="p-button-success p-button-raised">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-                Login
-            </button>
-        </form>
-        <p class="mt-3">Not registered?
-            <a [routerLink]="['/register']">Create an account</a>
-        </p>
     </div>
-</div>
+</body>

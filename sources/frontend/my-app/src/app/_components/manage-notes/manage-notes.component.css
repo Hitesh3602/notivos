@@ -1,0 +1,17 @@
+/* Assuming you have a global CSS file where you can define these styles */
+
+/* Setting background color */
+.my-table {
+    background-color: rgba(20, 33, 61, 1);
+}
+
+/* Setting text color */
+.p-datatable-striped .p-datatable-tbody tr td {
+    color: #000000;
+}
+
+/* Setting button color */
+.p-button-outlined {
+    background-color: #14213D;
+    color: #FCA311;
+}

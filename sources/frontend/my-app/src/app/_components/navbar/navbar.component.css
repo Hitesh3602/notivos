@@ -1,3 +1,12 @@
 .navbar-brand, .navbar-brand:visited {
     color: #22c55e;
 }
+
+.custom-bg-brown {
+    background-color: #14213D !important; /* Adding !important to ensure it overrides Bootstrap's bg-dark */
+}
+
+.custom-text-color {
+    color: #FCA311 !important; /* Text color */
+    font-weight: bold;
+}

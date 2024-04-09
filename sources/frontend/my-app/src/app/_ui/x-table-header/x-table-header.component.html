@@ -1,7 +1,7 @@
 <ng-template [ngIf]="hasNewLink">
     <div class="d-flex justify-content-between">
         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
-            [routerLink]="newLink"></button>
+            [routerLink]="newLink" style="background-color: #14213D !important;color: #FCA311; border-color: #FCA311;"></button>
         <span class="p-input-icon-left float-end">
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="input" placeholder="Global Search" />

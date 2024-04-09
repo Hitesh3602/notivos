@@ -1,6 +1,6 @@
 <app-x-page-title title="My Profile"></app-x-page-title>
 
-<form id="profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form id="profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit()" style="background-color: #E5E5E5; padding: 20px;">
 
     <div class="form-group mb-3 required">
         <!-- Full name -->
@@ -37,7 +37,9 @@
         </span>
     </div>
 
-    <button pButton class="p-button-success p-button-raised" [disabled]="!profileForm.valid" type="submit">
+    <button pButton class="p-button-success p-button-raised" [disabled]="!profileForm.valid" type="submit"
+            style="background-color: #14213D; color: #FCA311;">
         <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-        Save Changes</button>
+        Save Changes
+    </button>
 </form>

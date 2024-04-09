@@ -8,7 +8,7 @@
                 <h5 class="card-title mb-4">{{ note?.caption }}</h5>
                 <p class="card-text" [innerHtml]="note?.body! | safeHtml"></p>
             </div>
-            <div class="card-footer text-muted">
+            <div class="card-footer text-muted"  style="color: #FCA311 !important;">
                 <a class="mt-auto mb-auto" [routerLink]="['/']" class="card-view-link">Back to list</a>
             </div>
         </div>

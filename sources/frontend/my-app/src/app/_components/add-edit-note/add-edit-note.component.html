@@ -1,7 +1,7 @@
 <app-x-page-title title="Create Note" *ngIf="isAddMode"></app-x-page-title>
 <app-x-page-title title="Edit Note" *ngIf="!isAddMode"></app-x-page-title>
 
-<form id="profileForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+<form id="profileForm" [formGroup]="editForm" (ngSubmit)="onSubmit()" style="background-color: #E5E5E5; padding: 20px;">
 
     <div class="form-group mb-3 required">
         <!-- Name -->
@@ -35,13 +35,13 @@
         </p-editor>
     </div>
 
-    <div class="form-group row mb-3 required">
+    <div class="form-group row mb-3 required" >
         <!-- Category -->
         <label for="category" class="col-sm-2 col-form-label control-label">
             Category
         </label>
         <div class="col-sm-9">
-            <p-dropdown id="category" [options]="categories" formControlName="category" optionLabel="name" optionValue="name"></p-dropdown>
+            <p-dropdown id="category" [options]="categories" formControlName="category" optionLabel="name" optionValue="name" style="background-color: #14213D;"></p-dropdown>
         </div>
     </div>
 
@@ -51,14 +51,15 @@
             State
         </label>
         <div class="col-sm-9">
-            <p-dropdown id="state" [options]="states" formControlName="state" optionLabel="name" optionValue="name"></p-dropdown>
+            <p-dropdown id="state" [options]="states" formControlName="state" optionLabel="name" optionValue="name" style="background-color: #14213D;"></p-dropdown>
         </div>
     </div>
 
     <div class="d-flex flex-row">
-        <button pButton class="p-button-success me-4 p-button-raised" type="submit" [disabled]="!editForm.valid">
+        <button pButton class="p-button-success me-4 p-button-raised" type="submit" [disabled]="!editForm.valid" style="background-color: #14213D; color: #FCA311;">
             <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-            Save Changes</button>
-        <a class="mt-auto mb-auto" [routerLink]="['/manage-notes']">Back to list</a>
+            Save Changes
+        </button>
+        <a class="mt-auto mb-auto" [routerLink]="['/manage-notes']" style="color: #000000;">Back to list</a>
     </div>
 </form>
