@@ -1,4 +1,4 @@
-# Snappy board 
+# Notivos
 
 Demo application to manage a simple note board table with messages in different categories and with the ability to share private messages between the users (not visible for others). The applications use Java 17 + Spring Boot 3 and PostgreSQL for backend and Angular 15 for frontend.
 
